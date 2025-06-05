@@ -514,9 +514,17 @@ class Collab extends PureComponent<CollabProps, CollabState> {
     };
     this.fallbackInitializationHandler = fallbackInitializationHandler;
 
+    // Check if WebSocket server URL is configured
+    const wsServerUrl = import.meta.env.VITE_APP_WS_SERVER_URL;
+    if (!wsServerUrl || wsServerUrl.trim() === '') {
+      console.warn('WebSocket server URL not configured, collaboration disabled');
+      this.setErrorDialog('Collaboration server not configured');
+      return fallbackInitializationHandler();
+    }
+
     try {
       this.portal.socket = this.portal.open(
-        socketIOClient(import.meta.env.VITE_APP_WS_SERVER_URL, {
+        socketIOClient(wsServerUrl, {
           transports: ["websocket", "polling"],
         }),
         roomId,
