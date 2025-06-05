@@ -42,8 +42,12 @@ import type { Socket } from "socket.io-client";
 // -----------------------------------------------------------------------------
 
 let FIREBASE_CONFIG: Record<string, any>;
+let isFirebaseConfigured = false;
+
 try {
   FIREBASE_CONFIG = JSON.parse(import.meta.env.VITE_APP_FIREBASE_CONFIG);
+  // Check if Firebase config has required fields
+  isFirebaseConfigured = !!(FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.projectId);
 } catch (error: any) {
   console.warn(
     `Error JSON parsing firebase config. Supplied value: ${
@@ -51,6 +55,7 @@ try {
     }`,
   );
   FIREBASE_CONFIG = {};
+  isFirebaseConfigured = false;
 }
 
 let firebaseApp: ReturnType<typeof initializeApp> | null = null;
@@ -149,6 +154,15 @@ export const saveFilesToFirebase = async ({
   prefix: string;
   files: { id: FileId; buffer: Uint8Array }[];
 }) => {
+  // Return early if Firebase is not properly configured
+  if (!isFirebaseConfigured) {
+    console.log("Firebase not configured, treating all files as errored");
+    return { 
+      savedFiles: [], 
+      erroredFiles: files.map(f => f.id) 
+    };
+  }
+
   const storage = await loadFirebaseStorage();
 
   const erroredFiles: FileId[] = [];
@@ -189,6 +203,12 @@ export const saveToFirebase = async (
   elements: readonly SyncableExcalidrawElement[],
   appState: AppState,
 ) => {
+  // Return early if Firebase is not properly configured
+  if (!isFirebaseConfigured) {
+    console.log("Firebase not configured, skipping save to Firebase");
+    return null;
+  }
+
   const { roomId, roomKey, socket } = portal;
   if (
     // bail if no room exists as there's nothing we can do at this point
@@ -251,6 +271,12 @@ export const loadFromFirebase = async (
   roomKey: string,
   socket: Socket | null,
 ): Promise<readonly SyncableExcalidrawElement[] | null> => {
+  // Return null if Firebase is not properly configured
+  if (!isFirebaseConfigured) {
+    console.log("Firebase not configured, skipping load from Firebase");
+    return null;
+  }
+
   const firestore = _getFirestore();
   const docRef = doc(firestore, "scenes", roomId);
   const docSnap = await getDoc(docRef);
@@ -274,6 +300,12 @@ export const loadFilesFromFirebase = async (
   decryptionKey: string,
   filesIds: readonly FileId[],
 ) => {
+  // Return empty results if Firebase is not properly configured
+  if (!isFirebaseConfigured) {
+    console.log("Firebase not configured, returning empty file results");
+    return { loadedFiles: new Map(), erroredFiles: new Map() };
+  }
+
   const loadedFiles: BinaryFileData[] = [];
   const erroredFiles = new Map<FileId, true>();
 
