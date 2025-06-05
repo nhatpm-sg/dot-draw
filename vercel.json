@@ -11,6 +11,7 @@
   ],
 
   "env": {
-    "VITE_APP_ENABLE_TRACKING": "true"
+    "VITE_APP_ENABLE_TRACKING": "true",
+    "VITE_APP_WS_SERVER_URL": "https://your-websocket-server.onrender.com"
   }
 } 

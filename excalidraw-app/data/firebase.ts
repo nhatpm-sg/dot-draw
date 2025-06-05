@@ -303,7 +303,7 @@ export const loadFilesFromFirebase = async (
   // Return empty results if Firebase is not properly configured
   if (!isFirebaseConfigured) {
     console.log("Firebase not configured, returning empty file results");
-    return { loadedFiles: new Map(), erroredFiles: new Map() };
+    return { loadedFiles: [], erroredFiles: new Map() };
   }
 
   const loadedFiles: BinaryFileData[] = [];
