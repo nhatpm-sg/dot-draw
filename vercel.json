@@ -3,7 +3,6 @@
   "outputDirectory": "excalidraw-app/build",
   "installCommand": "yarn install",
   "framework": null,
-  "functions": {},
   "rewrites": [
     {
       "source": "/(.*)",
