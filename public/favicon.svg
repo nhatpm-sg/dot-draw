@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <!-- Background circle with gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Main background -->
+  <circle cx="500" cy="500" r="480" fill="url(#bgGradient)" />
+  
+  <!-- Letter 'D' for Dottrips -->
+  <path d="M300 250 L300 750 L450 750 Q600 750 650 600 Q650 500 650 400 Q600 250 450 250 Z M380 330 L450 330 Q550 330 580 430 Q580 500 580 570 Q550 670 450 670 L380 670 Z" fill="#ffffff" />
+  
+  <!-- Small accent circle -->
+  <circle cx="700" cy="300" r="40" fill="#ffffff" opacity="0.8" />
+</svg>
