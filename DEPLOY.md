@@ -1,78 +1,130 @@
-# 🚀 Deploy Excalidraw to Netlify
+# 🚀 Deploy Excalidraw to Vercel
 
 ## Cách deploy nhanh chóng:
 
-### 1. **Tạo tài khoản Netlify**
-- Truy cập [netlify.com](https://netlify.com)
-- Đăng ký/đăng nhập bằng GitHub account
+### 1. **Deploy với One-Click** (Khuyến nghị)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/excalidraw/excalidraw)
 
 ### 2. **Deploy từ Git Repository**
 
-#### Option A: Deploy từ GitHub (Khuyến nghị)
+#### Bước 1: Tạo tài khoản Vercel
+- Truy cập [vercel.com](https://vercel.com)
+- Đăng ký/đăng nhập bằng GitHub account
+
+#### Bước 2: Import Project
 1. Push code lên GitHub repository
-2. Vào Netlify Dashboard → "New site from Git"
-3. Chọn GitHub và authorize
-4. Chọn repository của bạn
-5. Netlify sẽ tự động detect settings từ `netlify.toml`
+2. Vào Vercel Dashboard → "New Project"
+3. Import từ GitHub repository
+4. Vercel sẽ tự động detect settings từ `vercel.json`
 
-#### Option B: Drag & Drop build folder
-1. Build project locally:
-   ```bash
-   yarn install
-   yarn build
-   ```
-2. Kéo thả folder `excalidraw-app/build` vào Netlify
+#### Bước 3: Configure (Auto-configured)
+- **Build Command**: `yarn build`
+- **Output Directory**: `excalidraw-app/build`
+- **Install Command**: `yarn install`
+- **Node Version**: 18.x (từ `.nvmrc`)
 
-### 3. **Build Settings** (Auto-configured từ netlify.toml)
-- **Build command**: `yarn build`
-- **Publish directory**: `excalidraw-app/build`
-- **Node version**: 18
+### 3. **Build Manual** (Testing)
+```bash
+# Install dependencies
+yarn install
+
+# Build production
+yarn build
+
+# Test local production build
+yarn build:preview
+```
 
 ### 4. **Environment Variables** (Optional)
-Nếu cần, có thể thêm các ENV vars trong Netlify dashboard:
-- `VITE_APP_ENABLE_TRACKING=false`
-- `VITE_APP_DISABLE_SENTRY=true`
+Có thể thêm trong Vercel dashboard:
+- `VITE_APP_ENABLE_TRACKING=true` (đã có trong vercel.json)
+- `VITE_APP_DISABLE_SENTRY=true` (nếu muốn tắt error tracking)
+- `VITE_APP_GIT_SHA` (tự động set bởi Vercel)
 
 ## 📁 Files đã được chuẩn bị sẵn:
 
-- ✅ `netlify.toml` - Cấu hình build và deploy
-- ✅ `public/_redirects` - SPA routing 
+- ✅ `vercel.json` - Cấu hình build, routing và headers
 - ✅ `.nvmrc` - Node version specification
+- ✅ `package.json` scripts - Build commands
+- ✅ SPA routing support
 - ✅ Security headers và cache optimization
 
 ## 🔧 Build Scripts có sẵn:
 
-- `yarn build` - Production build
-- `yarn build:app` - Build app only  
+- `yarn build` - Production build (cho Vercel)
+- `yarn build:app` - Build app với tracking enabled
 - `yarn start` - Development server
-- `yarn serve` - Serve production build locally
+- `yarn build:preview` - Build và preview locally
 
 ## 🌐 Features được enable:
 
 - ✅ PWA (Progressive Web App)
 - ✅ Service Worker caching
+- ✅ SPA routing với rewrites
+- ✅ Security headers (CSP, XSS protection, etc.)
+- ✅ Cache optimization cho static assets
 - ✅ Font optimization
 - ✅ Code splitting
-- ✅ Security headers
-- ✅ SPA routing
+- ✅ Environment variables
+- ✅ Git SHA tracking
 
 ## 🔍 Troubleshooting:
 
-### Build fails:
-- Ensure Node.js 18.x is used
-- Check if all dependencies are installed
-- Verify no TypeScript errors
+### Build fails trên Vercel:
+- Check Node.js version trong `.nvmrc`
+- Verify dependencies trong `package.json`
+- Check build logs trong Vercel dashboard
 
-### App doesn't load:
-- Check if `_redirects` file is present
-- Verify build output directory is correct
+### App không load sau deploy:
+- Verify routing rewrites trong `vercel.json`
+- Check console errors trong browser
+- Verify build output directory
 
 ### Performance issues:
-- Enable PWA caching
-- Check if fonts are loading from cache
+- Enable edge caching trong Vercel
+- Check static asset caching headers
+- Verify PWA caching
 
-## 🚀 Deploy URL:
-Sau khi deploy thành công, bạn sẽ có:
-- Production URL: `https://yourappname.netlify.app`
-- Deploy previews cho mỗi PR
-- Auto-deploy khi push to main branch 
+## 🚀 Vercel Features:
+
+### Sau khi deploy thành công:
+- **Production URL**: `https://yourproject.vercel.app`
+- **Preview deployments** cho mỗi branch
+- **Auto-deploy** khi push to main branch
+- **Edge caching** worldwide
+- **Analytics** và performance monitoring
+
+### Vercel CLI (Optional):
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy từ terminal
+vercel
+
+# Deploy production
+vercel --prod
+```
+
+## 🔧 Advanced Configuration:
+
+### Custom Domain:
+1. Vào Project Settings trong Vercel
+2. Add custom domain
+3. Configure DNS records
+
+### Environment Variables:
+1. Project Settings → Environment Variables
+2. Add variables for Production, Preview, Development
+
+### Build Performance:
+- Vercel automatically caches dependencies
+- Build time: ~2-3 minutes
+- Deploy time: ~30 seconds
+
+---
+
+**Ready to deploy!** 🎉
+
+Chỉ cần push code lên GitHub và connect với Vercel là xong! 

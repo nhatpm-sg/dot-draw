@@ -161,3 +161,29 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 Made with ❤️ by the Excalidraw team
+
+### Option 4: Deploy to Vercel
+
+Deploy your own Excalidraw to Vercel với một click:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/excalidraw/excalidraw)
+
+Hoặc deploy manually:
+
+1. **Fork repository này**
+2. **Tạo tài khoản Vercel** tại [vercel.com](https://vercel.com)
+3. **Connect GitHub repository** của bạn
+4. **Deploy**: Vercel sẽ tự động detect cấu hình từ `vercel.json`
+
+#### Build Settings được cấu hình sẵn:
+- **Build Command**: `yarn build`
+- **Output Directory**: `excalidraw-app/build`
+- **Install Command**: `yarn install`
+- **Node Version**: 18.x (từ `.nvmrc`)
+
+#### Features đã được enable:
+- ✅ SPA routing với rewrites
+- ✅ Security headers
+- ✅ Cache optimization cho static assets
+- ✅ PWA support
+- ✅ Environment variables
