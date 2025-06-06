@@ -1,15 +1,13 @@
 import "./ExcalidrawLogo.scss";
 
-
-
 const LogoText = () => (
-  <div 
+  <div
     className="ExcalidrawLogo-text"
-    style={{ 
-      color: '#000000',
-      fontWeight: 'bold',
-      fontSize: 'inherit',
-      fontFamily: 'inherit'
+    style={{
+      color: "#000000",
+      fontWeight: "bold",
+      fontSize: "inherit",
+      fontFamily: "inherit",
     }}
   >
     Dottrips Draw

@@ -1,7 +1,6 @@
 # Excalidraw
 
-[![npm](https://img.shields.io/npm/v/@excalidraw/excalidraw.svg)](https://www.npmjs.com/package/@excalidraw/excalidraw)
-[![GitHub](https://img.shields.io/github/license/excalidraw/excalidraw.svg)](https://github.com/excalidraw/excalidraw/blob/master/LICENSE)
+[![npm](https://img.shields.io/npm/v/@excalidraw/excalidraw.svg)](https://www.npmjs.com/package/@excalidraw/excalidraw) [![GitHub](https://img.shields.io/github/license/excalidraw/excalidraw.svg)](https://github.com/excalidraw/excalidraw/blob/master/LICENSE)
 
 Excalidraw is a virtual collaborative whiteboard tool that lets you easily sketch diagrams that have a hand-drawn feel to them.
 
@@ -51,7 +50,7 @@ export default function App() {
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - Yarn (recommended) or npm
 
 ### Setup
@@ -111,8 +110,8 @@ This repository contains multiple packages:
     canvasActions: {
       loadScene: false,
       export: false,
-      toggleTheme: false
-    }
+      toggleTheme: false,
+    },
   }}
 />
 ```
@@ -176,12 +175,14 @@ Hoặc deploy manually:
 4. **Deploy**: Vercel sẽ tự động detect cấu hình từ `vercel.json`
 
 #### Build Settings được cấu hình sẵn:
+
 - **Build Command**: `yarn build`
 - **Output Directory**: `excalidraw-app/build`
 - **Install Command**: `yarn install`
 - **Node Version**: 18.x (từ `.nvmrc`)
 
 #### Features đã được enable:
+
 - ✅ SPA routing với rewrites
 - ✅ Security headers
 - ✅ Cache optimization cho static assets

@@ -80,13 +80,9 @@ export default function LibraryMenuItems({
     [libraryItems],
   );
 
-
-
   const showBtn = !libraryItems.length && !pendingElements.length;
 
-  const isLibraryEmpty =
-    !pendingElements.length &&
-    !unpublishedItems.length;
+  const isLibraryEmpty = !pendingElements.length && !unpublishedItems.length;
 
   const [lastSelectedItem, setLastSelectedItem] = useState<
     LibraryItem["id"] | null
@@ -134,12 +130,7 @@ export default function LibraryMenuItems({
         onSelectItems(selectedItems.filter((_id) => _id !== id));
       }
     },
-    [
-      lastSelectedItem,
-      onSelectItems,
-      selectedItems,
-      unpublishedItems,
-    ],
+    [lastSelectedItem, onSelectItems, selectedItems, unpublishedItems],
   );
 
   const getInsertedElements = useCallback(
@@ -211,8 +202,7 @@ export default function LibraryMenuItems({
     <div
       className="library-menu-items-container"
       style={
-        pendingElements.length ||
-        unpublishedItems.length
+        pendingElements.length || unpublishedItems.length
           ? { justifyContent: "flex-start" }
           : { borderBottom: 0 }
       }
@@ -286,8 +276,6 @@ export default function LibraryMenuItems({
             </LibraryMenuSectionGrid>
           )}
         </>
-
-
 
         {showBtn && (
           <LibraryMenuControlButtons

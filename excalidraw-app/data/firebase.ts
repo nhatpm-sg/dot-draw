@@ -47,7 +47,9 @@ let isFirebaseConfigured = false;
 try {
   FIREBASE_CONFIG = JSON.parse(import.meta.env.VITE_APP_FIREBASE_CONFIG);
   // Check if Firebase config has required fields
-  isFirebaseConfigured = !!(FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.projectId);
+  isFirebaseConfigured = !!(
+    FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.projectId
+  );
 } catch (error: any) {
   console.warn(
     `Error JSON parsing firebase config. Supplied value: ${
@@ -156,10 +158,9 @@ export const saveFilesToFirebase = async ({
 }) => {
   // Return early if Firebase is not properly configured
   if (!isFirebaseConfigured) {
-    console.log("Firebase not configured, treating all files as errored");
-    return { 
-      savedFiles: [], 
-      erroredFiles: files.map(f => f.id) 
+    return {
+      savedFiles: [],
+      erroredFiles: files.map((f) => f.id),
     };
   }
 
@@ -205,7 +206,6 @@ export const saveToFirebase = async (
 ) => {
   // Return early if Firebase is not properly configured
   if (!isFirebaseConfigured) {
-    console.log("Firebase not configured, skipping save to Firebase");
     return null;
   }
 
@@ -273,7 +273,6 @@ export const loadFromFirebase = async (
 ): Promise<readonly SyncableExcalidrawElement[] | null> => {
   // Return null if Firebase is not properly configured
   if (!isFirebaseConfigured) {
-    console.log("Firebase not configured, skipping load from Firebase");
     return null;
   }
 
@@ -302,8 +301,7 @@ export const loadFilesFromFirebase = async (
 ) => {
   // Return empty results if Firebase is not properly configured
   if (!isFirebaseConfigured) {
-    console.log("Firebase not configured, returning empty file results");
-    return { loadedFiles: new Map(), erroredFiles: new Map() };
+    return { loadedFiles: [], erroredFiles: new Map<FileId, true>() };
   }
 
   const loadedFiles: BinaryFileData[] = [];

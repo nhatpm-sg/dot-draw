@@ -13,8 +13,8 @@ export const HelpButton = (props: HelpButtonProps) => (
     className="help-icon"
     onClick={props.onClick}
     type="button"
-          title={`${t("helpDialog.shortcuts")} — ?`}
-      aria-label={t("helpDialog.shortcuts")}
+    title={`${t("helpDialog.shortcuts")} — ?`}
+    aria-label={t("helpDialog.shortcuts")}
   >
     {HelpIcon}
   </button>
